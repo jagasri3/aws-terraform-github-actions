@@ -14,6 +14,6 @@ module "compute" {
   environment       = var.environment
   ami_id            = var.ami_id
   instance_type     = var.instance_type
-  subnet_id         = module.networking.public_subnet_1_id
+  subnet_id         = module.networking.public_subnet_2_id
   security_group_id = module.networking.security_group_id
 }
