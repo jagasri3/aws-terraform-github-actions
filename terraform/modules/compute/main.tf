@@ -28,12 +28,12 @@ resource "aws_instance" "web" {
 
   user_data = <<-EOF
               #!/bin/bash
-              dnf update -y
-              dnf install -y nginx
+              apt-get update -y
+              apt-get install -y nginx
               systemctl enable nginx
               systemctl start nginx
 
-              cat > /usr/share/nginx/html/index.html <<'HTML'
+              cat > /var/www/html/index.html <<'HTML'
               <!DOCTYPE html>
               <html>
               <head>
@@ -46,6 +46,8 @@ resource "aws_instance" "web" {
               </html>
               HTML
               EOF
+
+  user_data_replace_on_change = true
 
   tags = {
     Name        = "${var.environment}-web-server"
